@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>독립웹연합</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="desktop">
+      <section class="window window-list" data-window>
+        <div class="window-frame">
+          <header class="window-header" data-drag-handle>
+            <span>1. 독립웹연합 멤버</span>
+          </header>
+          <div class="window-body" id="site-list-panel">
+            <p class="status-line">사이트 목록을 불러오는 중...</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="window window-join" data-window>
+        <div class="window-frame">
+          <header class="window-header" data-drag-handle>
+            <span>2. 참여하기</span>
+          </header>
+          <div class="window-body">
+            <p>
+              독립웹연합은 독립 웹사이트들의 더 쉬운 발견을 위해 만들어진
+              <button
+                id="open-ring-examples"
+                class="inline-link"
+                type="button"
+              >
+                웹링
+              </button>입니다.
+            </p>
+            <form id="join-form" class="join-form">
+              <label for="join-url">
+                참여를 원한다면 당신의 독립 웹사이트 링크를 입력하세요
+              </label>
+              <input
+                id="join-url"
+                name="url"
+                type="text"
+                placeholder="https://your-site.example"
+              />
+              <button type="submit">완료</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="window window-ring" data-window>
+        <div class="window-frame">
+          <header class="window-header" data-drag-handle>
+            <span>3. 멋진 다른 웹링들</span>
+          </header>
+          <div class="window-body">
+            <div class="site-row">
+              <a class="site-link" href="https://nuthead.neocities.org/ring/" target="_blank" rel="noreferrer">nuthead.neocities.org/ring/</a>
+              <a class="site-link" href="http://teethinvitro.neocities.org/webring/linuxring/" target="_blank" rel="noreferrer">teethinvitro.neocities.org/webring/linuxring/</a>
+              <a class="site-link" href="https://ourfavoritevoid.club/" target="_blank" rel="noreferrer">ourfavoritevoid.club/</a>
+              <a class="site-link" href="https://xn--sr8hvo.ws/directory" target="_blank" rel="noreferrer">xn--sr8hvo.ws/directory</a>
+              <a class="site-link" href="https://webring.xxiivv.com/#random" target="_blank" rel="noreferrer">webring.xxiivv.com/#random</a>
+              <a class="site-link" href="https://uberblogr.de/blogs" target="_blank" rel="noreferrer">uberblogr.de/blogs</a>
+              <a class="site-link" href="https://webring.bucketfish.me/" target="_blank" rel="noreferrer">webring.bucketfish.me/</a>
+              <a class="site-link" href="https://ghostring.neocities.org/" target="_blank" rel="noreferrer">ghostring.neocities.org/</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="./script.js" defer></script>
+  </body>
+</html>
