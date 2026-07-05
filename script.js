@@ -124,13 +124,14 @@ function renderSiteList(siteData) {
   row.className = "site-row";
 
   siteData.forEach((site) => {
+    const normalizedUrl = normalizeSiteUrl(site.url);
     const link = document.createElement("a");
     link.className = "site-link";
-    link.href = site.url;
+    link.href = normalizedUrl;
     link.target = "_blank";
     link.rel = "noreferrer";
-    link.textContent = site.url.replace(STRIP_PROTOCOL_PATTERN, "");
-    link.title = site.url;
+    link.textContent = normalizedUrl.replace(STRIP_PROTOCOL_PATTERN, "");
+    link.title = normalizedUrl;
     row.appendChild(link);
   });
 
@@ -152,9 +153,9 @@ function handleWebringNavigation(siteData) {
   }
 
   const redirectMap = {
-    prev: targets.previous.url,
-    next: targets.next.url,
-    random: targets.random.url,
+    prev: normalizeSiteUrl(targets.previous.url),
+    next: normalizeSiteUrl(targets.next.url),
+    random: normalizeSiteUrl(targets.random.url),
     home: getBaseUrl(),
   };
 
@@ -187,6 +188,26 @@ function getRingTargets(siteData, slug) {
 
 function getBaseUrl() {
   return `${window.location.origin}${window.location.pathname}`;
+}
+
+function normalizeSiteUrl(url) {
+  if (typeof url !== "string") {
+    return "";
+  }
+
+  if (url.startsWith("https:/") && !url.startsWith("https://")) {
+    return url.replace("https:/", "https://");
+  }
+
+  if (url.startsWith("http:/") && !url.startsWith("http://")) {
+    return url.replace("http:/", "http://");
+  }
+
+  if (/^https?:\/\//.test(url)) {
+    return url;
+  }
+
+  return `https://${url.replace(/^\/+/, "")}`;
 }
 
 function handleJoinSubmit(event) {
