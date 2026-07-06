@@ -1,10 +1,4 @@
 @font-face {
-  font-family: "Mona10";
-  src: url("./Mona10.woff2") format("woff2");
-  font-display: swap;
-}
-
-@font-face {
   font-family: "Limgul13";
   src: url("./Limgul13.woff2") format("woff2");
   font-display: swap;
@@ -12,7 +6,7 @@
 
 :root {
   --unit: 14px;
-  --bg: #2a2a2a;
+  --bg: blue;
   --panel: #1b1b1b;
   --panel-2: #111111;
   --line: #000000;
@@ -33,7 +27,7 @@ body {
   min-height: 100%;
   background: var(--bg);
   color: var(--text);
-  font-family: "Limgul13", "Mona10", monospace;
+  font-family: "Limgul13",  monospace;
   font-size: var(--unit);
   line-height: 1.45;
 }
@@ -60,10 +54,39 @@ a {
   overflow: hidden;
 }
 
+.mesh-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.orbit-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 2000;
+}
+
+.orbit-overlay circle {
+  fill: none;
+  stroke: #3b3b3b;
+  stroke-width: 2;
+  stroke-dasharray: 6 8;
+  opacity: 0.95;
+  vector-effect: non-scaling-stroke;
+}
+
 .window {
   position: absolute;
   display: flex;
   flex-direction: column;
+  z-index: 1;
 }
 
 .window-frame {
@@ -71,7 +94,10 @@ a {
   flex-direction: column;
   width: 100%;
   height: 100%;
+  border: 1px solid #3a66ff;
   background: var(--panel);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+  transform-origin: center;
 }
 
 .window-header {
@@ -92,15 +118,15 @@ a {
   top: 18vh;
   left: 24vw;
   width: min(33rem, calc(100vw - 4rem));
-  height: min(20rem, calc(100vh - 8rem));
+  height: min(21rem, calc(100vh - 8rem));
   z-index: 3;
 }
 
 .window-join {
   top: 26vh;
   left: 50vw;
-  width: min(33rem, calc(100vw - 4rem));
-  height: min(20rem, calc(100vh - 8rem));
+  width: min(32rem, calc(100vw - 4rem));
+  height: min(21rem, calc(100vh - 8rem));
   transform: translateX(-50%);
   z-index: 2;
 }
@@ -109,7 +135,7 @@ a {
   top: 34vh;
   left: 44vw;
   width: min(33rem, calc(100vw - 4rem));
-  height: min(20rem, calc(100vh - 8rem));
+  height: min(21rem, calc(100vh - 8rem));
   z-index: 1;
 }
 
@@ -187,10 +213,36 @@ button {
   cursor: grabbing;
 }
 
+.window.pulse .window-frame {
+  animation: window-pulse 320ms ease-out;
+}
+
+@keyframes window-pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  45% {
+    transform: scale(1.04);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
 @media (max-width: 920px) {
   .desktop {
     overflow: auto;
     padding-bottom: calc(var(--unit) * 4);
+  }
+
+  .orbit-overlay {
+    display: none;
+  }
+
+  .mesh-canvas {
+    display: none;
   }
 
   .window {
@@ -200,7 +252,7 @@ button {
     bottom: auto;
     left: auto;
     width: 100%;
-    height: 20rem;
+    height: 21rem;
     margin-bottom: calc(var(--unit) * 1.4);
     transform: none;
   }

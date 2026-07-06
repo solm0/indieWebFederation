@@ -3,15 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>독립웹연합</title>
+    <title>독립웹연맹</title>
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
     <main class="desktop">
+      <canvas class="mesh-canvas" id="mesh-canvas" aria-hidden="true"></canvas>
+      <svg class="orbit-overlay" id="orbit-overlay" aria-hidden="true">
+        <circle id="orbit-circle" />
+      </svg>
+
       <section class="window window-list" data-window>
         <div class="window-frame">
           <header class="window-header" data-drag-handle>
-            <span>1. 독립웹연합 멤버</span>
+            <span>1. 멤버</span>
           </header>
           <div class="window-body" id="site-list-panel">
             <p class="status-line">사이트 목록을 불러오는 중...</p>
@@ -22,19 +27,20 @@
       <section class="window window-join" data-window>
         <div class="window-frame">
           <header class="window-header" data-drag-handle>
-            <span>2. 참여하기</span>
+            <span>2. 독립웹연맹</span>
           </header>
           <div class="window-body">
             <p>
-              독립웹연합은 독립 웹사이트들의 더 쉬운 발견을 위해 만들어진
+              독립웹연맹(Independent Web Federation)은 독립 웹사이트들의 더 쉬운 발견을 위해 만들어진 웹링입니다.
+            </p>
+            <p>웹링이 무엇인지 모른다면
               <button
                 id="open-ring-examples"
                 class="inline-link"
                 type="button"
               >
-                웹링
-              </button>입니다.
-            </p>
+                세 번째 창
+              </button>의 웹링들을 구경해 보세요.</p>
             <form id="join-form" class="join-form">
               <label for="join-url">
                 참여를 원한다면 당신의 독립 웹사이트 링크를 입력하세요
